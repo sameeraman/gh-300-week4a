@@ -9,7 +9,13 @@ import type {
 const tasks: Task[] = [];
 
 export function listTasks(): Task[] {
-  return tasks.map((task) => ({ ...task }));
+  return tasks
+    .map((task) => ({ ...task }))
+    .sort(
+      (left, right) =>
+        right.createdAt.localeCompare(left.createdAt) ||
+        right.id.localeCompare(left.id),
+    );
 }
 
 export function findTask(id: string): Task | undefined {
